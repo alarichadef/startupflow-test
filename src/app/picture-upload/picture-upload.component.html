@@ -1,0 +1,21 @@
+<p>
+  picture-upload works!
+</p>
+<!-- <span style="color:red;" *ngIf="message">{{message}}</span> -->
+<form (ngSubmit)="onSubmit()"> 
+  <div>
+    <input #file type="file" name="picture" accept='image/*' (change)="onPictureSelected($event)" required/>
+  </div>
+  <div class="form-field">
+      <label class="latitude" for="latitude"><span class="hidden">Latitude</span></label>
+      <input name="latitude" id="latitude" type="number" class="form-input" placeholder="latitude" required>
+</div>
+<div class="form-field">
+  <label class="longitude" for="longitude"><span class="hidden">Longitude</span></label>
+  <input name="longitude" id="longitude" type="number" class="form-input" placeholder="longitude" required>
+</div>
+
+  <div>
+    <button type="submit">Upload</button>
+  </div>
+</form>
