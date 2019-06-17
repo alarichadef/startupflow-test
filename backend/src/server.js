@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
 
 app.get('/picture',async (req, res) => {
   try {
-    var result = await Picture.find().exec();
+    var result = await Picture.find().sort({datePicture: 'desc'}).exec();
     res.send(result);
   } catch (error) {
     res.status(500).send(error);
@@ -35,10 +35,8 @@ app.post('/', upload.single('picture'), async (req, res) => {
   latitude: req.body.latitude,
   longitude: req.body.longitude
   };
-  await  Picture.create(data, (err,small) => {
-    console.log('error', err);
-    return res.send(data);
-
+  await  Picture.create(data).then( result => {
+    return res.send(result);
   });
 });
 

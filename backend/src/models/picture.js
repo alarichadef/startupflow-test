@@ -8,14 +8,13 @@ const pictureSchema = new mongoose.Schema({
         type: Date,
     },
     img: { 
-        type: Buffer, 
-       // contentType: String 
+        type: String, 
     },
     latitude: {
-        type: Number
+        type: mongoose.Schema.Types.Decimal128
     },
     longitude: {
-        type: Number
+        type: mongoose.Schema.Types.Decimal128
     }
 });
 

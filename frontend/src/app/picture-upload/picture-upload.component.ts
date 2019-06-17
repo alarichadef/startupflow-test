@@ -33,7 +33,8 @@ export class PictureUploadComponent implements OnInit {
     fd.append('longitude', JSON.stringify(this.uploadPicture.get('longitude').value));
     fd.append('latitude', JSON.stringify(this.uploadPicture.get('latitude').value));
     this.httpClient.post('http://localhost:3000/',fd).subscribe(res => {
-      this.PicturesList.getDetailPicture(res)
+      this.PicturesList.getDetailPicture(res,true);
+      this.PicturesList.ngOnInit();
     });
   }
 

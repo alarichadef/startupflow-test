@@ -1,8 +1,10 @@
 /// <reference types="@types/googlemaps" />
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectorRef,} from '@angular/core';
 import { PictureDetailsComponent } from '../picture-details/picture-details.component'
 import { Picture } from '../picture';
 import {MatDialog} from '@angular/material';
+import { PictureServiceService } from '../picture-service.service';
+import {DomSanitizer} from '@angular/platform-browser';
 
 
 @Component({
@@ -14,56 +16,32 @@ export class PicturesListComponent implements OnInit {
   @ViewChild('gmap',{static: false}) gmapElement: any;
   map: google.maps.Map;
 
-  pictures: Picture[] = [
-    { 
-      id: 1,
-      date: new Date(),
-      url: 'https://material.angular.io/assets/img/examples/shiba1.jpg',
-      longitude: 40,
-      latitude: 30
-    },
-    { 
-      id: 5,
-      date: new Date(),
-      url: 'https://material.angular.io/assets/img/examples/shiba2.jpg',
-      longitude: 40,
-      latitude: 30
-    }
-  ];
+  pictures: any;
   selectedPicture: Picture;
 
-  constructor(public dialog: MatDialog) { }
-
+  constructor(public dialog: MatDialog, public pictureService: PictureServiceService, public cd : ChangeDetectorRef, public _DomSanitizer: DomSanitizer) { 
+  }
+  
   ngOnInit() {
     this.getPictures();
   }
 
   getPictures() {
-    console.log('GetPictures()');
-  }
-  openDialog() {
-    const dialogRef = this.dialog.open(PictureDetailsComponent);
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+    this.pictureService.getAllPictures().then(data => {
+      this.pictures = data[0];
     });
+    return 0;
+    
   }
-  getDetailPicture(picture: any) {
+
+  getDetailPicture(picture: any, reload?: boolean) {
     this.selectedPicture = picture;
-    // let mapProp = {
-    //   center: new google.maps.LatLng(18.5793, 73.8143),
-    //   zoom: 15,
-    //   mapTypeId: google.maps.MapTypeId.ROADMAP
-    // };
-    // this.map = new google.maps.Map(this.gmapElement.nativeElement, mapProp);
     const dialogRef = this.dialog.open(PictureDetailsComponent, {
       width: '600px',
-      data:picture
+      data:this.selectedPicture
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      if(reload) location.reload();
     });
-
-    console.log('click : picture', picture);
   }
 }

@@ -16,7 +16,7 @@ export class PictureDetailsComponent implements OnInit {
 
   ngOnInit() {
     var mapProp = {
-      center: new google.maps.LatLng(parseFloat(this.data['latitude']), parseFloat(this.data['longitude'])),
+      center: new google.maps.LatLng(parseFloat(this.data['latitude']['$numberDecimal']), parseFloat(this.data['longitude']['$numberDecimal'])),
       zoom: 15,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };

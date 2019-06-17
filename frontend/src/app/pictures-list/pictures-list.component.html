@@ -3,7 +3,7 @@
 </p>
 <div fxLayout="row">
   <mat-card class="picture-card"  *ngFor="let picture of pictures">
-    <img mat-card-image src = {{picture.url}} >
+    <img mat-card-image [src]="_DomSanitizer.bypassSecurityTrustUrl('data:image/*;base64,'+picture.img)" >
     <mat-card-content>
     </mat-card-content>
     <mat-card-actions>

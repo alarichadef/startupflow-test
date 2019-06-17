@@ -1,6 +1,6 @@
 <h2 mat-dialog-title>Détail de la photo</h2>
 <mat-dialog-content class="mat-typography">
-    <p>Photo du {{data.date | date}} à  {{data.date | date:'shortTime'}}</p>
+    <p>Photo du {{data.datePicture | date}} à  {{data.datePicture | date:'shortTime'}}</p>
     <img [src]="'data:image/jpg;base64,'+data.img" />
   <div #gmap style="width:100%;height:400px"></div>
 </mat-dialog-content>
