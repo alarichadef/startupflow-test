@@ -1,16 +1,15 @@
 import mongoose from 'mongoose';
 
-const db = () => {
-    return mongoose.connect('mongodb://localhost:27017/startupflow');
-  };
+const db = mongoose.connect('mongodb://127.0.0.1/test', {useNewUrlParser: true});
+  
 
 const pictureSchema = new mongoose.Schema({
     datePicture: {
         type: Date,
     },
     img: { 
-        data: Buffer, 
-        contentType: String 
+        type: Buffer, 
+       // contentType: String 
     },
     latitude: {
         type: Number

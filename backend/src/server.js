@@ -1,7 +1,12 @@
 import express from 'express';
 import Picture from './models/picture';
+import cors from 'cors';
+import multer from 'multer';
+import fs from 'fs-extra';
 
 const app = express();
+const upload = multer({limits: {fileSize: 2000000 },dest:'/uploads/'}) 
+app.use(cors());
 
 
 app.get('/', (req, res) => {
@@ -17,16 +22,25 @@ app.get('/picture',async (req, res) => {
   }
 });
 
-app.post('/picture', async (req, res) => {
-  const picture = await Picture.create({
-    datePicture: req.body.date,
-    img: req.body.img,
-    longitude: req.body.long,
-    latitude: req.body.lat
-  });
-  return res.send(picture);
-});
 
+app.post('/', upload.single('picture'), async (req, res) => {
+  // read te mg file from tmp in-memory location
+  var newImg = fs.readFileSync(req.file.path);
+  // encode the file as a base64 string.
+  var encImg = newImg.toString('base64');
+  // define your new document
+ let data = {
+  datePicture: new Date(),
+  img: encImg,
+  latitude: req.body.latitude,
+  longitude: req.body.longitude
+  };
+  await  Picture.create(data, (err,small) => {
+    console.log('error', err);
+    return res.send(data);
+
+  });
+});
 
 app.listen(3000, () =>
   console.log('App listening on port 3000!'),
