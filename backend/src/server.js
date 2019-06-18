@@ -24,20 +24,21 @@ app.get('/picture',async (req, res) => {
 
 
 app.post('/', upload.single('picture'), async (req, res) => {
-  // read te mg file from tmp in-memory location
   var newImg = fs.readFileSync(req.file.path);
-  // encode the file as a base64 string.
   var encImg = newImg.toString('base64');
-  // define your new document
  let data = {
-  datePicture: new Date(),
-  img: encImg,
-  latitude: req.body.latitude,
-  longitude: req.body.longitude
+    datePicture: new Date(),
+    img: encImg,
+    latitude: req.body.latitude ? req.body.latitude : 0 ,
+    longitude: req.body.longitude ? req.body.longitude : 0
   };
-  await  Picture.create(data).then( result => {
-    return res.send(result);
-  });
+  if (req.file.mimetype == 'image/jpg' || req.file.mimetype == 'image/jpeg' || req.file.mimetype == 'image/png') {
+    await  Picture.create(data).then( result => {
+      return res.send(result);
+    });
+  } else {
+    res.status(500).send(error);
+  }
 });
 
 app.listen(3000, () =>
