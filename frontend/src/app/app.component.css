@@ -1,0 +1,10 @@
+h1 {
+    color: #4d4d65;
+    font-family: sans-serif;
+}
+
+mat-divider {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background: #0883ea;
+}

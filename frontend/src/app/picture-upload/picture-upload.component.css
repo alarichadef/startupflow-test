@@ -1,0 +1,13 @@
+:host {
+    display: block;
+    border: 1px solid black; 
+}
+
+form {
+    padding-left: 10px;
+    padding-bottom: 10px;
+}
+
+input {
+    padding-bottom: 10px;
+}

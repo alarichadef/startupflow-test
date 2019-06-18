@@ -1,9 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatCardModule} from '@angular/material';
+import {MatCardModule, MatDividerModule} from '@angular/material';
 import {MatButtonModule} from '@angular/material';
-import {MatDialogModule} from '@angular/material';
+import {MatDialogModule, MatFormFieldModule, MatInputModule} from '@angular/material';
 import {ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -26,10 +26,13 @@ import { PictureUploadComponent } from './picture-upload/picture-upload.componen
     FormsModule,
     BrowserModule,
     BrowserAnimationsModule,
+    MatFormFieldModule,
     MatCardModule,
     MatButtonModule,
     MatDialogModule,
-    HttpClientModule
+    HttpClientModule,
+    MatInputModule,
+    MatDividerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

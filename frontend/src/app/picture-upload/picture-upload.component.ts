@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { PicturesListComponent } from '../pictures-list/pictures-list.component'
+import {MatFormFieldModule, MatInputModule} from '@angular/material';
 
 @Component({
   selector: 'app-picture-upload',

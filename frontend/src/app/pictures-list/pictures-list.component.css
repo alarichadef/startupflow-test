@@ -2,5 +2,19 @@
     width: 200px;
     margin-bottom: 50px;
     float: left;
-    margin-right: 20px;
+    margin-left: 10px;
+    background: #f5dcdc;
+}
+.mat-card-image {
+    border-radius: 10px;
+}
+img {
+    height: 200px; 
+    width: 200px;
+    margin:0;
+    padding-top: 10px;
+}   
+button {
+    background: #cce6fd;
+    border-radius: 10px;
 }

@@ -1,17 +1,17 @@
-<p>
-  picture-upload works!
-</p>
 <form (ngSubmit)="onSubmit()" [formGroup]="uploadPicture"> 
+
+  <div class="form-field">    
+  <mat-form-field>
+      <input matInput name="latitude" id="latitude" type="number" class="form-control" formControlName="latitude" placeholder="latitude" required>
+    </mat-form-field>
+    </div>
+  <div class="form-field">
+      <mat-form-field>
+    <input matInput name="longitude" id="longitude" type="number" class="form-control" formControlName="longitude" placeholder="longitude" required>
+    </mat-form-field>
+  </div>  
   <div>
-    <input #file type="file" name="picture" accept='image/*' (change)="onPictureSelected($event)" formControlName="picture" required/>
-  </div>
-  <div class="form-field">
-      <label class="latitude" for="latitude"><span class="hidden">Latitude</span></label>
-      <input name="latitude" id="latitude" type="number" class="form-control" formControlName="latitude" placeholder="latitude" required>
-  </div>
-  <div class="form-field">
-    <label class="longitude" for="longitude"><span class="hidden">Longitude</span></label>
-    <input name="longitude" id="longitude" type="number" class="form-control" formControlName="longitude" placeholder="longitude" required>
+    <input  #file type="file" name="picture" accept='image/*' (change)="onPictureSelected($event)" formControlName="picture" required/>
   </div>
   <div>
     <button [disabled]="uploadPicture.invalid" type="submit">Upload</button>

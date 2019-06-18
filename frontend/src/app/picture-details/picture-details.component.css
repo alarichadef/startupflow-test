@@ -1,0 +1,10 @@
+img{
+    max-width: 100%;
+    max-height: 300px;
+}
+mat-dialog-content {
+    max-height: 100%
+}
+#gmap {
+    max-height: 300px;
+}
